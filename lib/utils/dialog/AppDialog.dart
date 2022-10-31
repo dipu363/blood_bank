@@ -84,7 +84,7 @@ class AppDialog{
     );
   }
 
-  Future<void> showMessageDialog(String text, {required Function function}) async {
+  Future<void> showMessageDialog(String text, {Function ? function}) async {
     return showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
@@ -105,7 +105,7 @@ class AppDialog{
                 child: Text(CommonLabel.commonOk),
                 onPressed: () {
                   Navigator.of(context).pop();
-                  function();
+                  function!();
                 },
               ),
             ],

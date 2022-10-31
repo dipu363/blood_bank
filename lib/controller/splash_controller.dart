@@ -25,7 +25,7 @@ class SplashController extends GetxController{
         /*load common label*/
         await CommonLabel.initList(context);
         var nextScreen = nid == null || mobileNo == null ? const LoginScreen() : const HomeScreen() ;
-        Get.off(nextScreen);
+        Get.off(() => nextScreen);
 
       }else{
         AppToast(context).showToast(CommonLabel.commonCheckConnection, AppToast.ERROR, AppToast.LONG);
