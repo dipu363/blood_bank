@@ -1,4 +1,5 @@
 import 'package:blood_bank/controller/login_controller.dart';
+import 'package:blood_bank/screen/partials/LoginBackground.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
@@ -41,7 +42,11 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Form(
           key: loginController.loginKey,
           child: Column(
-            children: [getHeader(), getLoginComponent(), getFooter()],
+            children: [
+              getHeader(),
+              getLoginComponent(),
+             // getFooter(),
+            ],
           ),
         ),
       ),
@@ -107,7 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ],
         ),
-        // WavyHeader(),
+         WavyHeader(),
       ],
     );
   }
@@ -190,7 +195,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       nid,
                                       mobile,
                                       loginController.labelList,
-                                      loginController.isLocalActive);
+                                      );
                                 } else {
                                   AppToast(context).showToast(
                                       CommonLabel.commonCheckConnection,

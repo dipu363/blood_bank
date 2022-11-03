@@ -50,8 +50,7 @@ final String KEY = 'LoginController';
 
   void _getLabel(BuildContext context) async{
     CodeResponse? res = await ApplicationApi(context).getLabelText(LabelConstant.loginFormCode);
-    //2421372422
-    //0559355184
+
       if(res != null){
         isLoadingLabel.value = false ;
         labelList = res.data;
@@ -87,13 +86,13 @@ final String KEY = 'LoginController';
   }
 
 
- void login(var context,String nationalityID, String mobileNo, labelList, isLocalActive) async{
+ void login(var context,String nationalityID, String mobileNo, labelList, ) async{
   ApplicationLoader.apiRequestLoader(context);
   CommonResponse login = await ApplicationApi(context).login(nationalityID, mobileNo);
   if(login.success){
-    Get.offAll(TokenScreen(nationalityID, mobileNo, login.message, login.data, labelList));
+    Get.offAll(TokenScreen(nationalityID, mobileNo, login.data, labelList));
   }else {
-    AppDialog(context).showMessageDialog(isLocalActive ? login.message_native : login.message, );
+    AppDialog(context).showMessageDialog(isLocalActive.value ? login.message_native : login.message, );
   }
 }
 

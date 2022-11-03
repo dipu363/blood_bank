@@ -54,7 +54,7 @@ class ApplicationApi{
   Future<CommonResponse> login(String nationalityID, String mobileNo) async {
     CommonResponse ?res;
     try {
-      var url = baseUrl + "CheckDonorLogin";
+      var url = "${baseUrl}CheckDonorLogin";
       var queryParameters = {"nationalityID": nationalityID, "mobileNo": mobileNo};
       final response = await dio.post(url,queryParameters: queryParameters);
       res = CommonResponse.fromJson(response.data);
@@ -66,7 +66,7 @@ class ApplicationApi{
   Future<CommonResponse> checkActivationCode(String nationalityID, String mobileNo, String activeCode) async {
     CommonResponse? res;
     try {
-      var url = baseUrl + "CheckActivationCode";
+      var url = "${baseUrl}CheckActivationCode";
       var queryParameters = {"nationalityID": nationalityID, "mobileNo": mobileNo, "actvCode": activeCode};
       final response = await dio.post(url,queryParameters: queryParameters);
       res = CommonResponse.fromJson(response.data);
@@ -79,7 +79,7 @@ class ApplicationApi{
   Future<CommonResponse> checkCurrentStage(String nationalityID, String mobileNo) async {
     CommonResponse? res;
     try {
-      var url = baseUrl + "CheckCurrentStage";
+      var url = "${baseUrl}CheckCurrentStage";
       var queryParameters = {"nationalityID": nationalityID, "mobileNo": mobileNo};
       final response = await dio.get(url,queryParameters: queryParameters);
       res = CommonResponse.fromJson(response.data);
