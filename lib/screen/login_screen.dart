@@ -22,7 +22,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   LoginController loginController = Get.put(LoginController());
 
-  @override
+/*  @override
   void initState() {
     super.initState();
     loginController.initData(context);
@@ -30,7 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
     if (kDebugMode) {
       print('loading ==  ${loginController.isLoadingLabel.value}');
     }
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {

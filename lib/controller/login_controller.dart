@@ -36,6 +36,14 @@ final String KEY = 'LoginController';
 
 
 
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    initData(Get.context);
+
+  }
+
   void initData(var context) async {
     var lang = await ApplicationMemory.getString(ApplicationMemory.KEY_LANGUAGE);
     print('$KEY >>>>>>>> language == $lang');

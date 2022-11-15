@@ -1,5 +1,6 @@
 
 import 'package:blood_bank/utils/LabelConstant.dart';
+import 'package:flutter/foundation.dart';
 
 import '../data/application_api.dart';
 import '../data/requestModel/CodeModel.dart';
@@ -28,12 +29,13 @@ class CommonLabel{
         commonLabelList = res.data;
       }
     }
-    print(">>>>>>>>>> init done"); 
+    if (kDebugMode) {
+      print(">>>>>>>>>> init done");
+    }
   }
 
   static Future<void> setLabel(isNative) async {
-    print(">>>>>>>>>> now set label");
-    commonLabelList.forEach((element) {
+    for (var element in commonLabelList) {
       if(element.CODE == LabelConstant.commonEmptyField){
         commonEmptyField = isNative ?  element.NAME_NATIVE : element.NAME_GLOBAL;
       }else if(element.CODE == LabelConstant.commonCheckConnection){
@@ -57,7 +59,7 @@ class CommonLabel{
       }else if(element.CODE == LabelConstant.commonLogoutTitle){
         commonLogoutTitle = isNative ?  element.NAME_NATIVE : element.NAME_GLOBAL;
       }
-    });
+    }
 
   }
 

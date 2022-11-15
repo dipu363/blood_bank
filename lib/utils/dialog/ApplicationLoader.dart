@@ -12,7 +12,7 @@ class ApplicationLoader{
           Container(margin: const EdgeInsets.only(left: 10),child:Text(CommonLabel.commonLoaderText)),
         ],),
     );
-    showDialog(barrierDismissible: false,
+    showDialog(barrierDismissible: true,
       context:context,
       builder:(BuildContext context){
         return alert;

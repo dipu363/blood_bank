@@ -22,17 +22,13 @@ class TokenScreen extends StatefulWidget {
 }
 
 class _TokenScreenState extends State<TokenScreen> {
-  TokenController tController = Get.put(TokenController());
-
-  @override
-  void initState() {
-    tController.initData(context, widget.labelList);
-    super.initState();
-  }
 
   /*================= BODY =====================*/
   @override
   Widget build(BuildContext context) {
+
+    TokenController tController = Get.put(TokenController(widget.labelList));
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -83,7 +79,6 @@ class _TokenScreenState extends State<TokenScreen> {
                         FocusScope.of(context).unfocus();
                         if (await AppUtils.checkConnection()) {
                           tController.checkActivationCode(
-                              context,
                               widget.nationalityID,
                               widget.mobileNo,
                               tController.textToken.text.toString());
