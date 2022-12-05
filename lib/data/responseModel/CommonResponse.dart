@@ -10,9 +10,9 @@ class CommonResponse {
 
   CommonResponse.fromJson(Map json)
       : success = json['success'],
-        message = json['message'] == null ? "" : json['message'],
-        message_native = json['message_native'] == null ? "" : json['message_native'],
-        data = json['data'] == null ? "" : json['data']
+        message = json['message'] ?? "",
+        message_native = json['message_native'] ?? "",
+        data = json['data'] ?? ""
     ;
 
 

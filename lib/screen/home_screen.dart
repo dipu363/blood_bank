@@ -1,17 +1,15 @@
 
 import 'package:blinking_text/blinking_text.dart';
 import 'package:blood_bank/controller/home_controller.dart';
+import 'package:blood_bank/controller/label_controller.dart';
 import 'package:blood_bank/screen/questionnaire_screen.dart';
 import 'package:blood_bank/screen/reg_screen.dart';
-import 'package:blood_bank/utils/ApplicationMemory.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_instance/get_instance.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-
+import '../controller/reg_controller.dart';
 import '../utils/AppConstant.dart';
 import '../utils/CommonLabel.dart';
+import '../utils/LabelConstant.dart';
 import '../utils/TextStore.dart';
 import '../utils/dialog/AppDialog.dart';
 import '../utils/dialog/AppToast.dart';
@@ -26,12 +24,15 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateMixin {
   late DateTime currentBackPressTime;
+
+
+  LabelController labelController = Get.put(LabelController());
   HomeController hController = Get.put(HomeController());
 
 
   @override
   Widget build(BuildContext context) {
-
+labelController.initLabelList(LabelConstant.homeFormCode, context);
     return WillPopScope(
       onWillPop: onWillPop ,
       child: Scaffold(
@@ -123,7 +124,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
 
                         Obx(()=>
                           Text(
-                            hController.homeNationalId.value,
+                            labelController.homeNationalId.value,
                             style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
                           ),
                         ),
@@ -171,7 +172,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
         children: [
 
             Obx(()=>Text(
-               hController.homeOptions.value,
+               labelController.homeOptions.value,
                 style: const TextStyle(
                     fontWeight: FontWeight.bold, fontSize: 22.0
                 ),
@@ -192,10 +193,10 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
       ),
       children: <Widget>[
 
-        Obx(() => getItem(icon: Icons.add_box_outlined, text: hController.homeRegistration.value.toString(), screen: const RegistrationScreen(), isBlink: hController.currentStage.value == 1, item : 1)),
-        Obx(() => getItem(icon: Icons.history, text: hController.homeHistoryQuestionnaire.value.toString(), screen: const QuestionnaireScreen(), isBlink: hController.currentStage.value == 2, item : 2)),
-        Obx(() => getItem(icon: Icons.create, text: hController.homeCreateAppointment.value.toString(), screen: const CreateAppointmentScreen(), isBlink: hController.currentStage.value == 3, item : 3)),
-        Obx(() => getItem(icon: Icons.delete, text: hController.homeCancelAppointment.value.toString(), screen: const CancelAppointmentScreen(), isBlink: hController.currentStage.value == 4, item : 4)),
+        Obx(() => getItem(icon: Icons.add_box_outlined, text: labelController.homeRegistration.value.toString(), screen: const RegistrationScreen(), isBlink: hController.currentStage.value == 1, item : 1)),
+        Obx(() => getItem(icon: Icons.history, text: labelController.homeHistoryQuestionnaire.value.toString(), screen: const QuestionnaireScreen(), isBlink: hController.currentStage.value == 2, item : 2)),
+        Obx(() => getItem(icon: Icons.create, text: labelController.homeCreateAppointment.value.toString(), screen: const CreateAppointmentScreen(), isBlink: hController.currentStage.value == 3, item : 3)),
+        Obx(() => getItem(icon: Icons.delete, text: labelController.homeCancelAppointment.value.toString(), screen: const CancelAppointmentScreen(), isBlink: hController.currentStage.value == 4, item : 4)),
       ],
     );
   }

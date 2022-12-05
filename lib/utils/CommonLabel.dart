@@ -7,9 +7,11 @@ import '../data/requestModel/CodeModel.dart';
 import '../data/responseModel/CodeResponse.dart';
 
 class CommonLabel{
+
+  static String key = 'CommonLabel';
   static List<CodeModel> commonLabelList = [];
 
-   static  String commonEmptyField  = "";
+   static String commonEmptyField  = "";
    static String  commonCheckConnection = "";
    static String  commonLoaderText = "";
    static String  commonPressBack = "";
@@ -30,11 +32,11 @@ class CommonLabel{
       }
     }
     if (kDebugMode) {
-      print(">>>>>>>>>> init done");
+      print("$key >>>>>>>>>> commonLabelList init done");
     }
   }
 
-  static Future<void> setLabel(isNative) async {
+  static Future<void>?setLabel(isNative){
     for (var element in commonLabelList) {
       if(element.CODE == LabelConstant.commonEmptyField){
         commonEmptyField = isNative ?  element.NAME_NATIVE : element.NAME_GLOBAL;
@@ -60,6 +62,7 @@ class CommonLabel{
         commonLogoutTitle = isNative ?  element.NAME_NATIVE : element.NAME_GLOBAL;
       }
     }
+    return null;
 
   }
 

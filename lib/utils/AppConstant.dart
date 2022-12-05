@@ -13,13 +13,12 @@ class AppConstant{
   ];
 
   static const InputDecoration textFieldDecoration = InputDecoration(
-    isDense: true,
     contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
     border: OutlineInputBorder(),
-    counterText: "",
+
   );
 
-  static const TextStyle textFieldLabelStyle = TextStyle(
+  static const TextStyle textStyle = TextStyle(
       fontSize: 15.0,
       color: Colors.black87
   );

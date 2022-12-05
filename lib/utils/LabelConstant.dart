@@ -63,13 +63,7 @@ class LabelConstant{
   static String questionDonorConsent = "lblDonorConsent";
   static String questionConsent = "lblConsent";
   static String questionDonConCheckbox = "lblDonConChekbox";
-  // static String question = "";
-  // static String question = "";
-  // static String question = "";
-  // static String question = "";
-  // static String question = "";
-  // static String question = "";
-  // static String question = "";
+
 
   /*crate_app_screen*/
   static String createAppFormCode = "T12128";
