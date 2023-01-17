@@ -22,15 +22,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   LoginController loginController = Get.put(LoginController());
 
-/*  @override
-  void initState() {
-    super.initState();
-    loginController.initData(context);
 
-    if (kDebugMode) {
-      print('loading ==  ${loginController.isLoadingLabel.value}');
-    }
-  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               getHeader(),
               getLoginComponent(),
-             // getFooter(),
+              getFooter(),
             ],
           ),
         ),
@@ -133,7 +125,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
             ),
-            getTextField(true),
+            getTextField(true,loginController.nidController),
             Padding(
               padding: const EdgeInsets.only(left: 20, bottom: 5),
               child: Obx(
@@ -147,7 +139,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Stack(
               alignment: Alignment.bottomRight,
               children: <Widget>[
-                getTextField(false),
+                getTextField(false,loginController.mobileNoController),
                 Padding(
                     padding: const EdgeInsets.only(right: 50),
                     child: Row(
@@ -216,7 +208,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget getTextField(isNid) {
+  Widget getTextField(isNid,TextEditingController controller) {
     return Padding(
       padding: const EdgeInsets.only(right: 40, bottom: 30),
       child: SizedBox(
@@ -232,10 +224,10 @@ class _LoginScreenState extends State<LoginScreen> {
             padding:
                 const EdgeInsets.only(left: 40, right: 20, top: 10, bottom: 10),
             child: TextFormField(
+
+              //initialValue: defultvalue,
               keyboardType: isNid ? TextInputType.number : TextInputType.phone,
-              controller: isNid
-                  ? loginController.nidController
-                  : loginController.mobileNoController,
+              controller: controller,
               validator: (value) {
                 if (value!.isEmpty) {
                   return CommonLabel.commonEmptyField;

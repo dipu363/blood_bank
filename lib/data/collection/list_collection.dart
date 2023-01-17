@@ -3,7 +3,7 @@ import '../requestModel/CodeModel.dart';
 class ListCollection {
   List<CodeModel> getMonthListGregorian() {
     List<CodeModel> monthList = <CodeModel>[];
-    monthList.addAll({
+    /*monthList.addAll({
       CodeModel("01", "يناير", "January"),
       CodeModel("02", "شهر فبراير", "February"),
       CodeModel("03", "مارس", "March"),
@@ -16,14 +16,14 @@ class ListCollection {
       CodeModel("10", "اكتوبر", "October"),
       CodeModel("11", "شهر نوفمبر", "November"),
       CodeModel("12", "ديسمبر", "December"),
-    });
+    });*/
 
     return monthList;
   }
 
   List<CodeModel> getMonthListHijri() {
     List<CodeModel> monthList = <CodeModel>[];
-    monthList.addAll({
+    /*monthList.addAll({
       CodeModel("01", "شهر محرم", "Muharram"),
       CodeModel("02", "سفر", "Safar"),
       CodeModel("03", "ربيع الأول", "Rabi' al-awwal"),
@@ -36,14 +36,14 @@ class ListCollection {
       CodeModel("10", "شوال", "Shawwal"),
       CodeModel("11", "ذو القعدة", "Dhu al-Qi'dah"),
       CodeModel("12", "ذو الحجة", "Dhu al-Hijjah")
-    });
+    });*/
 
     return monthList;
   }
 
   List<CodeModel> getYearListHijri() {
     List<CodeModel> yearList = <CodeModel>[];
-    yearList.addAll({
+    /*yearList.addAll({
       CodeModel("01", "١٣٥٦", "1356"),
       CodeModel("02", "١٣٥٧", "1357"),
       CodeModel("03", "١٣٥٨", "1358"),
@@ -128,8 +128,12 @@ class ListCollection {
       CodeModel("08", "١٤٢٧", "1427"),
       CodeModel("09", "١٤٢٨", "1428"),
       CodeModel("10", "١٤٢٩", "1429")
-    });
+    });*/
 
     return yearList;
   }
+
+
+
+
 }

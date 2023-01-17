@@ -115,8 +115,49 @@ class ApplicationApi{
       var url = "${baseUrl}GetDemographicData";
       var queryParameters = {"nationalityId": nationalityId, "mobileNo": mobileNo};
       final response = await dio.get(url,queryParameters: queryParameters);
-      print(response.data.toString());
+     // print(response.data.toString());
       res = RegistrationResponse.fromJson(response.data);
+    } catch (e) { onError(e, false);}
+    return res!;
+  }
+
+  Future<CodeResponse> getNationality() async {
+    CodeResponse? res;
+    try {
+      var url = "${baseUrl}GetAllNationality";
+      final response = await dio.get(url);
+      res = CodeResponse.fromJson(response.data);
+    } catch (e) {
+      onError(e, false);}
+    return res!;
+  }
+
+  Future<CodeResponse> getGender() async {
+    CodeResponse ?res;
+    try {
+      var url = "${baseUrl}GetAllGender";
+      final response = await dio.get(url);
+      res = CodeResponse.fromJson(response.data);
+    } catch (e) { onError(e, false);}
+    return res!;
+  }
+
+  Future<CodeResponse> getDays() async {
+    CodeResponse ?res;
+    try {
+      var url = "${baseUrl}GetDaysList";
+      final response = await dio.get(url);
+      res = CodeResponse.fromJson(response.data);
+    } catch (e) { onError(e, false);}
+    return res!;
+  }
+
+  Future<CodeResponse> getYears() async {
+    CodeResponse ?res;
+    try {
+      var url = "${baseUrl}GetYearList";
+      final response = await dio.get(url);
+      res = CodeResponse.fromJson(response.data);
     } catch (e) { onError(e, false);}
     return res!;
   }

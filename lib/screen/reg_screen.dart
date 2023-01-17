@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../controller/reg_controller.dart';
+import '../data/requestModel/CodeModel.dart';
 import '../utils/AppConstant.dart';
 import '../utils/CommonLabel.dart';
 
@@ -20,11 +21,22 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
   LabelController labelController = Get.put(LabelController());
   RegistrationController regController = Get.put (RegistrationController());
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    labelController.initLabelList(LabelConstant.regFormCode, context);
+  }
+
 
   @override
   Widget build(BuildContext context) {
-    labelController.initLabelList(LabelConstant.regFormCode, context);
-    regController.initData();
+
+    //regController.initData();
+
+    //print(regController.selectedGenderCode.value.NAME_GLOBAL);
+
+
 
 
     return  Form(
@@ -123,8 +135,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
              const SizedBox(height: 20.0,),
              _getFamilyNameRow(),
              _getDivider(),
-            // _getNationalityGenderRow(),
-            // _getDivider(),
+             Obx(()=> _getNationalityGenderRow()),
+             _getDivider(),
             // _getDOBGregorianRow(),
             // SizedBox(height: 20.0,),
             // _getDOBHijriRow(),
@@ -154,7 +166,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         Expanded(
           flex: 1,
           child: Column(
-            // mainAxisAlignment: MainAxisAlignment.start,
+
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Obx(()=> _getTextFieldLabel(labelController.regiNationality.value)),
@@ -175,10 +187,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
-             Obx(()=>  _getTextFieldLabel(labelController.regiPhone.value)) ,
-
-                TextFormField(
+              Obx(()=>  _getTextFieldLabel(labelController.regiPhone.value)) ,
+              TextFormField(
                  controller: regController.phoneController,
                   enabled: false,
                   decoration: AppConstant.textFieldDecoration,
@@ -402,6 +412,95 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       ],
     );
   }
+
+
+  Widget _getNationalityGenderRow(){
+    return Row(
+      children: [
+        Expanded(
+          flex: 3,
+          child: Row(
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        _getTextFieldLabel(labelController.regiNationality.value),
+                        _getRequiredField()
+                      ],
+                    ),
+                     DropdownButtonFormField<CodeModel>(
+                        validator: (value) => value == null ? CommonLabel .commonEmptyField : null,
+                        value: regController.selectedNationalCode.value,
+                        hint: const Text('select nationality'),
+                        onChanged: (value){
+                            //regController.selectedNationalCode.value = value!;
+                            print('REG Screen ${regController.selectedNationalCode.value.CODE}');
+                            print(regController.selectedNationalCode.value.NAME_GLOBAL);
+                          FocusScope.of(context).requestFocus(FocusNode());
+                        },
+                        items: regController.nationalList.map((item) {
+                          return DropdownMenuItem<CodeModel>(
+                            value: item,
+                            child: Text(labelController.isLocalActive.value ? item.NAME_NATIVE : item.NAME_GLOBAL),
+                          );
+                        }).toList(),
+                        decoration: AppConstant.textFieldDecoration,
+                      ),
+
+                  ],
+                ),
+              ),
+              _getDataLoader(regController.loaderNationality.value),
+            ],
+          ),
+        ),
+        const SizedBox(width: 10.0,),
+        Expanded(
+          flex: 2,
+          child: Row(
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        _getTextFieldLabel(labelController.regiGender.value),
+                        _getRequiredField()
+                      ],
+                    ),
+                     DropdownButtonFormField<CodeModel>(
+                        validator: (value) => value == null ? CommonLabel.commonEmptyField : null,
+                        value: regController.selectedGenderCode.value,
+                       hint: const Text('select Gender'),
+                        onChanged: (value){
+                          print(value);
+                         // regController.selectedGenderCode.value = value! ;
+                          FocusScope.of(context).requestFocus(FocusNode());
+                        },
+                        items: regController.genderList.map((item) {
+                          return DropdownMenuItem<CodeModel>(
+                            value: item,
+                            child: Text(labelController.isLocalActive.value ? item.NAME_NATIVE : item.NAME_GLOBAL),
+                          );
+                        }).toList(),
+                        decoration: AppConstant.textFieldDecoration,
+                      ),
+
+                  ],
+                ),
+              ),
+              _getDataLoader(regController.loaderGender.value),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
 
 
 

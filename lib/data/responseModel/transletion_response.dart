@@ -15,6 +15,6 @@ class TranslatedNameResponse {
     success = json['success'];
     message = json['message'] ?? "";
     total = json['total'];
-    data = total!>0 ? CodeModel.fromJson(json['data']) : CodeModel("","","");
+    data =  CodeModel.fromJson(json['data']);
   }
 }
