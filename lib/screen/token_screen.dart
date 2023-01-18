@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 
 import '../controller/token_controller.dart';
 import '../data/requestModel/CodeModel.dart';
-import '../utils/AppConstant.dart';
 import '../utils/AppUtils.dart';
 import '../utils/CommonLabel.dart';
 import '../utils/dialog/AppToast.dart';
@@ -22,11 +21,9 @@ class TokenScreen extends StatefulWidget {
 }
 
 class _TokenScreenState extends State<TokenScreen> {
-
   /*================= BODY =====================*/
   @override
   Widget build(BuildContext context) {
-
     TokenController tController = Get.put(TokenController(widget.labelList));
 
     return Scaffold(
@@ -39,7 +36,8 @@ class _TokenScreenState extends State<TokenScreen> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  Obx(()=>Text(
+                  Obx(
+                    () => Text(
                       "${tController.loginLblActivationCode} - ${widget.verificationId}",
                       style: TextStyle(
                           color: Theme.of(context).primaryColorDark,
@@ -50,7 +48,8 @@ class _TokenScreenState extends State<TokenScreen> {
                   const SizedBox(
                     height: 20.0,
                   ),
-                  Obx(()=> Text(tController.loginLblEnterActivationCode.value)),
+                  Obx(() =>
+                      Text(tController.loginLblEnterActivationCode.value)),
                   const SizedBox(
                     height: 20.0,
                   ),
@@ -73,7 +72,7 @@ class _TokenScreenState extends State<TokenScreen> {
                       ),
                     ),
                   ),
-                  RaisedButton(
+                  ElevatedButton(
                     onPressed: () async {
                       if (tController.tokenKey.currentState!.validate()) {
                         FocusScope.of(context).unfocus();
@@ -90,21 +89,11 @@ class _TokenScreenState extends State<TokenScreen> {
                         }
                       }
                     },
-                    textColor: Colors.white,
-                    padding: const EdgeInsets.all(0.0),
-                    child: Container(
-                      decoration: const BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: AppConstant.appGradients,
-                        ),
-                      ),
-                      padding: const EdgeInsets.only(
-                          top: 10.0, bottom: 10.0, left: 20.0, right: 20.0),
-                            child: Obx(()=>Text(tController.loginLblVerify.value,
-                            style: const TextStyle(fontSize: 20)),
-                      ),
+                    child: Obx(
+                      () => Text(tController.loginLblVerify.value,
+                          style: const TextStyle(fontSize: 20)),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
